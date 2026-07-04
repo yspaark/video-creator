@@ -1,0 +1,66 @@
+{
+	"meta": {
+		"title": "Demo Shorts",
+		"slug": "demo-shorts",
+		"platform": "shorts",
+		"fps": 30,
+		"width": 1080,
+		"height": 1920,
+		"brand": {
+			"primaryColor": "#111827",
+			"secondaryColor": "#F9FAFB",
+			"accentColor": "#6366F1",
+			"fontFamily": "Inter"
+		}
+	},
+	"scenes": [
+		{
+			"id": "scene-1-hook",
+			"kind": "hook",
+			"voiceover": {
+				"text": "Wait, you're doing it wrong."
+			},
+			"background": {
+				"type": "color",
+				"value": "#111827"
+			},
+			"textOverlay": {
+				"heading": "You're doing it wrong",
+				"position": "center"
+			},
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-2-point",
+			"kind": "point",
+			"voiceover": {
+				"text": "Here is the one change that actually makes a difference."
+			},
+			"background": {
+				"type": "color",
+				"value": "#1F2937"
+			},
+			"textOverlay": {
+				"heading": "The one change",
+				"position": "top"
+			},
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-3-cta",
+			"kind": "cta",
+			"voiceover": {
+				"text": "Try it today and let me know how it goes."
+			},
+			"background": {
+				"type": "color",
+				"value": "#312E81"
+			},
+			"textOverlay": {
+				"heading": "Try it today",
+				"position": "bottom"
+			},
+			"captions": "subtitle"
+		}
+	]
+}
