@@ -1,0 +1,34 @@
+{
+  "name": "video-creator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion-based pipeline for generating professional short-form and long-form videos from reference material.",
+  "main": "src/index.ts",
+  "scripts": {
+    "studio": "remotion studio",
+    "new-video": "node scripts/new-video.mjs",
+    "render:shorts": "remotion render ShortForm out/shorts.mp4",
+    "render:longform": "remotion render LongForm out/longform.mp4",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@remotion/cli": "^4.0.484",
+    "@remotion/google-fonts": "^4.0.484",
+    "@remotion/media-utils": "^4.0.484",
+    "@remotion/renderer": "^4.0.484",
+    "@remotion/transitions": "^4.0.484",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "remotion": "^4.0.484",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.3"
+  }
+}

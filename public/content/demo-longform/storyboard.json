@@ -1,0 +1,52 @@
+{
+	"meta": {
+		"title": "Demo Longform",
+		"slug": "demo-longform",
+		"platform": "longform",
+		"fps": 30,
+		"width": 1920,
+		"height": 1080,
+		"brand": {
+			"primaryColor": "#111827",
+			"secondaryColor": "#F9FAFB",
+			"accentColor": "#6366F1",
+			"fontFamily": "Inter"
+		}
+	},
+	"scenes": [
+		{
+			"id": "scene-1-intro",
+			"kind": "hook",
+			"voiceover": {
+				"text": "In this video, we're breaking down how the pipeline actually works."
+			},
+			"background": {
+				"type": "color",
+				"value": "#111827"
+			},
+			"textOverlay": {
+				"heading": "How it actually works",
+				"position": "center"
+			},
+			"label": "Introduction",
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-2-explain",
+			"kind": "point",
+			"voiceover": {
+				"text": "Every scene is described in a single JSON file, and Remotion turns it into video."
+			},
+			"background": {
+				"type": "color",
+				"value": "#1F2937"
+			},
+			"textOverlay": {
+				"heading": "One JSON file per video",
+				"position": "top"
+			},
+			"label": "Chapter 1 - The storyboard",
+			"captions": "subtitle"
+		}
+	]
+}
