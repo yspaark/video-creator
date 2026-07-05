@@ -1,0 +1,148 @@
+{
+	"meta": {
+		"title": "Serbia, Self-Planned",
+		"slug": "serbia-sample-episode",
+		"platform": "longform",
+		"fps": 30,
+		"width": 1920,
+		"height": 1080,
+		"brand": {
+			"primaryColor": "#2B2318",
+			"secondaryColor": "#EFE6D8",
+			"accentColor": "#2B4C6F",
+			"fontFamily": "Inter"
+		}
+	},
+	"scenes": [
+		{
+			"id": "scene-1-hook",
+			"kind": "hook",
+			"durationInSeconds": 5,
+			"voiceover": {
+				"text": "베오그라드행 버스, 3분 차이로 놓쳤다. 다음 버스는 40분 뒤."
+			},
+			"background": {
+				"type": "color",
+				"value": "#2B2318"
+			},
+			"textOverlay": {
+				"heading": "3분 차이",
+				"position": "center"
+			},
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-2-plan",
+			"kind": "point",
+			"durationInSeconds": 6,
+			"voiceover": {
+				"text": "오늘 할 일은 네 가지. 공항에서 시내까지 가는 법, 환전, 첫 끼, 그리고 칼레메그단 요새에서 노을 보기."
+			},
+			"background": {
+				"type": "color",
+				"value": "#24384A"
+			},
+			"textOverlay": {
+				"heading": "오늘의 계획",
+				"body": "이동 · 환전 · 첫 끼 · 노을",
+				"position": "top"
+			},
+			"label": "오늘의 계획",
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-3-airport",
+			"kind": "point",
+			"durationInSeconds": 7,
+			"voiceover": {
+				"text": "니콜라 테슬라 공항에서 시내까지는 A1 버스. 편도 300디나르, 약 3천원. 45분이면 도착이다."
+			},
+			"background": {
+				"type": "color",
+				"value": "#4A2F22"
+			},
+			"textOverlay": {
+				"heading": "공항 → 시내",
+				"body": "A1 버스 · 편도 300디나르 · 45분",
+				"position": "bottom"
+			},
+			"label": "Chapter 1 — 공항에서 시내로",
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-4-money-food",
+			"kind": "point",
+			"durationInSeconds": 7,
+			"voiceover": {
+				"text": "환전은 공항보다 시내 사설 환전소가 낫다. 스카다르리야 골목의 첫 끼, 두 사람에 만오천원 정도."
+			},
+			"background": {
+				"type": "color",
+				"value": "#4A3B1E"
+			},
+			"textOverlay": {
+				"heading": "환전 & 첫 끼",
+				"body": "스카다르리야 · 2인 약 15,000원",
+				"position": "bottom"
+			},
+			"label": "Chapter 2 — 환전과 첫 끼",
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-5-fortress",
+			"kind": "point",
+			"durationInSeconds": 8,
+			"voiceover": {
+				"text": "칼레메그단은 로마 시대부터 오스만, 오스트리아까지 지배자가 계속 바뀐 요새다. 그 위에서 사바강과 다뉴브강이 만나는 걸 본다."
+			},
+			"background": {
+				"type": "color",
+				"value": "#1F3347"
+			},
+			"textOverlay": {
+				"heading": "칼레메그단 요새",
+				"body": "사바강과 다뉴브강이 만나는 곳",
+				"position": "top"
+			},
+			"label": "Chapter 3 — 칼레메그단 요새",
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-6-evening",
+			"kind": "point",
+			"durationInSeconds": 7,
+			"voiceover": {
+				"text": "첫날 총 경비는 교통비, 식비, 환전 수수료 합쳐서 둘이 4만원 정도. 무리하지 않아도 되는 속도였다."
+			},
+			"background": {
+				"type": "color",
+				"value": "#3A2A30"
+			},
+			"textOverlay": {
+				"heading": "첫날 총 경비",
+				"body": "교통 · 식비 · 환전 합산 약 40,000원",
+				"position": "bottom"
+			},
+			"label": "Chapter 4 — 저녁, 공화국 광장",
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-7-close",
+			"kind": "cta",
+			"durationInSeconds": 6,
+			"voiceover": {
+				"text": "계획은 우리가 짰다. 속도도 우리가 정한다. 다음 편은 노비사드."
+			},
+			"background": {
+				"type": "color",
+				"value": "#2B2318"
+			},
+			"textOverlay": {
+				"heading": "둘이 계획하고, 둘이 떠난다",
+				"body": "다음 편: 노비사드",
+				"position": "center"
+			},
+			"captions": "subtitle"
+		}
+	]
+}
