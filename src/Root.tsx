@@ -3,6 +3,7 @@ import {Composition} from 'remotion';
 import {ShortForm} from './compositions/ShortForm';
 import {LongForm} from './compositions/LongForm';
 import {loadStoryboard, computeSceneTimings, totalDurationInFrames} from './load-storyboard';
+import {ensureDisplayFontsLoaded} from './fonts';
 
 // `slug` selects which public/content/<slug>/storyboard.json drives the
 // render. calculateMetadata reads it and derives duration/fps/dimensions
@@ -19,7 +20,10 @@ export const RemotionRoot: React.FC = () => {
 				durationInFrames={150}
 				defaultProps={{slug: 'demo-shorts'}}
 				calculateMetadata={async ({props}) => {
-					const storyboard = await loadStoryboard(props.slug);
+					const [storyboard] = await Promise.all([
+						loadStoryboard(props.slug),
+						ensureDisplayFontsLoaded(),
+					]);
 					const timings = await computeSceneTimings(storyboard);
 					return {
 						durationInFrames: totalDurationInFrames(timings),
@@ -39,7 +43,10 @@ export const RemotionRoot: React.FC = () => {
 				durationInFrames={150}
 				defaultProps={{slug: 'demo-longform'}}
 				calculateMetadata={async ({props}) => {
-					const storyboard = await loadStoryboard(props.slug);
+					const [storyboard] = await Promise.all([
+						loadStoryboard(props.slug),
+						ensureDisplayFontsLoaded(),
+					]);
 					const timings = await computeSceneTimings(storyboard);
 					return {
 						durationInFrames: totalDurationInFrames(timings),

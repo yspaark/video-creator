@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Img, OffthreadVideo, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {Background} from '../storyboard';
-import {deriveAtmosphere} from '../color-utils';
+import {AtmosphereBackground} from './AtmosphereBackground';
 
 const KEN_BURNS_SCALE = 1.12;
 
@@ -14,21 +14,11 @@ export const KenBurnsMedia: React.FC<{background: Background}> = ({background}) 
 	});
 
 	if (background.type === 'color') {
-		// A flat fill reads as a slide, not a shot — animate a diagonal
-		// gradient plus a slow-drifting warm glow derived from the one
-		// authored color, so placeholder scenes still feel lit rather than
-		// solid-filled.
-		const {gradientPartner, glow} = deriveAtmosphere(background.value);
-		const angle = interpolate(progress, [0, 1], [124, 148]);
-		const glowX = interpolate(progress, [0, 1], [28, 72]);
-		const glowY = interpolate(progress, [0, 1], [70, 32]);
-		return (
-			<AbsoluteFill
-				style={{
-					background: `radial-gradient(65% 60% at ${glowX}% ${glowY}%, ${glow}4d, transparent 62%), linear-gradient(${angle}deg, ${background.value}, ${gradientPartner})`,
-				}}
-			/>
-		);
+		// A flat or gradient-filled rectangle behind text is a slide
+		// background no matter how it's animated — see AtmosphereBackground
+		// for the layered depth/parallax treatment placeholder scenes get
+		// instead, derived procedurally from the one authored color.
+		return <AtmosphereBackground baseHex={background.value} />;
 	}
 
 	if (background.type === 'video') {

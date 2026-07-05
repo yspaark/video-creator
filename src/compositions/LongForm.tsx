@@ -37,9 +37,19 @@ export const LongForm: React.FC<LongFormProps> = ({storyboard, timings}) => {
 							/>
 						) : null}
 						<TransitionSeries.Sequence durationInFrames={timings[i].durationInFrames}>
-							<SceneRenderer scene={scene} brand={storyboard.meta.brand} />
+							<SceneRenderer
+								scene={scene}
+								brand={storyboard.meta.brand}
+								transitionFrames={TRANSITION_FRAMES}
+								isFirstScene={i === 0}
+							/>
 							{scene.label ? (
-								<LowerThird label={scene.label} accentColor={storyboard.meta.brand.accentColor} />
+								<LowerThird
+									label={scene.label}
+									accentColor={storyboard.meta.brand.accentColor}
+									transitionFrames={TRANSITION_FRAMES}
+									isFirstScene={i === 0}
+								/>
 							) : null}
 						</TransitionSeries.Sequence>
 					</React.Fragment>

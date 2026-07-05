@@ -74,10 +74,17 @@ export const hexToHsl = (hex: string): {h: number; s: number; l: number} => {
 	return rgbToHsl(r, g, b);
 };
 
-// Derives a gradient partner and a warm accent glow from one base color.
-export const deriveAtmosphere = (baseHex: string) => {
+// Derives a small palette of shades from one authored scene color for a
+// layered, depth-suggesting placeholder background (used when no real
+// footage/photo is available) instead of one flat/gradient fill: a darker
+// "sky" shade for the top of frame, a lifted "horizon" shade near the
+// bottom, and two off-hue glow colors for drifting soft light blobs that
+// suggest atmosphere/haze rather than a slide background.
+export const deriveScenePalette = (baseHex: string) => {
 	const {h, s, l} = hexToHsl(baseHex);
-	const gradientPartner = hslToHex(h + 16, clamp01(s + 0.06), clamp01(l + 0.09));
-	const glow = hslToHex(h + 300, clamp01(s + 0.18), clamp01(l + 0.24));
-	return {gradientPartner, glow};
+	const sky = hslToHex(h - 6, clamp01(s + 0.02), clamp01(l - 0.16));
+	const horizon = hslToHex(h + 8, clamp01(s + 0.1), clamp01(l + 0.14));
+	const glowWarm = hslToHex(h + 28, clamp01(s + 0.2), clamp01(l + 0.28));
+	const glowCool = hslToHex(h - 150, clamp01(s + 0.1), clamp01(l + 0.16));
+	return {sky, horizon, glowWarm, glowCool};
 };
