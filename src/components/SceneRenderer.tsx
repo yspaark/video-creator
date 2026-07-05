@@ -5,6 +5,8 @@ import {KenBurnsMedia} from './KenBurnsMedia';
 import {TitleCard} from './TitleCard';
 import {Captions} from './Captions';
 import {SceneAudio} from './SceneAudio';
+import {Vignette} from './Vignette';
+import {FilmGrain} from './FilmGrain';
 
 // Renders a single scene: background media, optional title/heading overlay,
 // captions, and its voiceover audio. Shared by ShortForm and LongForm so
@@ -16,8 +18,10 @@ export const SceneRenderer: React.FC<{scene: Scene; brand: Storyboard['meta']['b
 	return (
 		<AbsoluteFill>
 			<KenBurnsMedia background={scene.background} />
+			<Vignette />
 			<TitleCard scene={scene} brandColor={brand.secondaryColor} accentColor={brand.accentColor} />
 			<Captions scene={scene} brandColor={brand.primaryColor} />
+			<FilmGrain />
 			<SceneAudio scene={scene} />
 		</AbsoluteFill>
 	);

@@ -20,9 +20,13 @@ export const LowerThird: React.FC<{label: string; accentColor: string}> = ({labe
 				opacity,
 				display: 'flex',
 				alignItems: 'center',
+				background: 'rgba(10,10,10,0.4)',
+				backdropFilter: 'blur(6px)',
+				borderRadius: 8,
+				padding: '10px 24px 10px 14px',
 			}}
 		>
-			<div style={{width: 6, height: 40, backgroundColor: accentColor, marginRight: 16}} />
+			<div style={{width: 6, height: 32, backgroundColor: accentColor, marginRight: 16, borderRadius: 3}} />
 			<div
 				style={{
 					fontFamily: 'Inter, sans-serif',

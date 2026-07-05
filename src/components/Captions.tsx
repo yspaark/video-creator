@@ -42,6 +42,11 @@ export const Captions: React.FC<{scene: Scene; brandColor: string}> = ({scene, b
 					color: 'white',
 					textShadow: '0 2px 12px rgba(0,0,0,0.65)',
 					WebkitTextStroke: `1px ${brandColor}`,
+					background: 'rgba(0,0,0,0.32)',
+					borderRadius: 14,
+					padding: '10px 24px',
+					boxDecorationBreak: 'clone',
+					WebkitBoxDecorationBreak: 'clone',
 				}}
 			>
 				{scene.voiceover.text}

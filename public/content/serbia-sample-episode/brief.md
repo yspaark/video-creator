@@ -48,3 +48,16 @@ rush. Competence over hardship.
   track. (Not yet sourced — see script notes.)
 - **Titles/thumbnails** (for the real upload, not this render): practical
   hook over shock-face, e.g. "짐 하나로 6개월, 계획은 우리가 짰다."
+
+First preview render read as flat placeholder slides, not footage — solid
+fills with no depth. Fixed at the component level (`KenBurnsMedia`,
+`SceneRenderer`, `TitleCard`, `Captions`, `LowerThird`), not by hacking
+this slug: solid-color scenes now get an animated gradient + drifting
+warm glow instead of a flat fill, plus a shared film-grain/vignette
+color-grade pass, scrimmed title text, and pill/glass-backed captions and
+lower-thirds. Applies to every future video using color placeholders,
+not just this one. Real location photography is still blocked — no
+image API keys configured, and this sandbox's network policy also
+denies outbound fetches to image hosts (e.g. Wikimedia Commons) even
+though no key would be required — so backgrounds stay generative until
+either a stock-image key is added or the producer supplies real footage.
