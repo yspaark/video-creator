@@ -7,6 +7,7 @@ import {Captions} from './Captions';
 import {SceneAudio} from './SceneAudio';
 import {Vignette} from './Vignette';
 import {FilmGrain} from './FilmGrain';
+import {SceneMotif} from './SceneMotif';
 
 // Renders a single scene: background media, optional title/heading overlay,
 // captions, and its voiceover audio. Shared by ShortForm and LongForm so
@@ -26,6 +27,7 @@ export const SceneRenderer: React.FC<{
 		<AbsoluteFill>
 			<KenBurnsMedia background={scene.background} />
 			<Vignette />
+			<SceneMotif scene={scene} transitionFrames={transitionFrames} isFirstScene={isFirstScene} />
 			<TitleCard
 				scene={scene}
 				brandColor={brand.secondaryColor}

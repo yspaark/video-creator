@@ -29,7 +29,8 @@
 				"heading": "3분 차이",
 				"position": "center"
 			},
-			"captions": "subtitle"
+			"captions": "subtitle",
+			"motif": "transit"
 		},
 		{
 			"id": "scene-2-plan",
@@ -67,7 +68,8 @@
 				"position": "bottom"
 			},
 			"label": "Chapter 1 — 공항에서 시내로",
-			"captions": "subtitle"
+			"captions": "subtitle",
+			"motif": "transit"
 		},
 		{
 			"id": "scene-4-money-food",
@@ -86,7 +88,8 @@
 				"position": "bottom"
 			},
 			"label": "Chapter 2 — 환전과 첫 끼",
-			"captions": "subtitle"
+			"captions": "subtitle",
+			"motif": "food"
 		},
 		{
 			"id": "scene-5-fortress",
@@ -105,7 +108,8 @@
 				"position": "top"
 			},
 			"label": "Chapter 3 — 칼레메그단 요새",
-			"captions": "subtitle"
+			"captions": "subtitle",
+			"motif": "landmark"
 		},
 		{
 			"id": "scene-6-evening",
@@ -124,7 +128,8 @@
 				"position": "bottom"
 			},
 			"label": "Chapter 4 — 저녁, 공화국 광장",
-			"captions": "subtitle"
+			"captions": "subtitle",
+			"motif": "money"
 		},
 		{
 			"id": "scene-7-close",
@@ -142,7 +147,8 @@
 				"body": "다음 편: 노비사드",
 				"position": "center"
 			},
-			"captions": "subtitle"
+			"captions": "subtitle",
+			"motif": "reflection"
 		}
 	]
 }
