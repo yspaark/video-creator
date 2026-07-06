@@ -109,7 +109,7 @@ export const TitleCard: React.FC<{
 							style={{
 								width: 56,
 								height: 3,
-								background: accentColor,
+								background: `linear-gradient(90deg, ${accentColor}, transparent)`,
 								opacity: headingOpacity,
 								marginBottom: body ? 14 : 0,
 								borderRadius: 2,

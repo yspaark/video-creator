@@ -2,6 +2,8 @@ import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {Scene} from '../storyboard';
 import {BODY_FONT_FAMILY} from '../fonts';
+import {glassPanelStyle} from '../glass';
+import {adjustLightness, readableInkColor, withAlpha} from '../color-utils';
 
 const FADE_FRAMES = 8;
 const POP_FRAMES = 4;
@@ -76,6 +78,7 @@ export const Captions: React.FC<{
 		scene.voiceover.wordTimestamps,
 	);
 	const emphasize = new Set((scene.emphasize ?? []).map((w) => w.toLowerCase()));
+	const chipInk = readableInkColor(accentColor);
 
 	return (
 		<AbsoluteFill
@@ -89,23 +92,19 @@ export const Captions: React.FC<{
 		>
 			<div
 				style={{
+					...glassPanelStyle(accentColor, {radius: 16, padding: '12px 26px'}),
 					opacity: containerOpacity,
 					display: 'flex',
 					flexWrap: 'wrap',
 					justifyContent: 'center',
 					columnGap: '0.4em',
-					rowGap: '0.15em',
+					rowGap: '0.2em',
 					fontFamily: `"${BODY_FONT_FAMILY}", sans-serif`,
 					fontWeight: 500,
 					fontSize: 40,
 					lineHeight: 1.35,
 					textAlign: 'center',
 					color: 'white',
-					textShadow: '0 2px 14px rgba(0,0,0,0.7), 0 0 2px rgba(0,0,0,0.8)',
-					background: 'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0.15))',
-					borderRadius: 10,
-					padding: '8px 20px',
-					borderLeft: `2px solid ${brandColor}66`,
 				}}
 			>
 				{spans.map((span, i) => {
@@ -127,7 +126,15 @@ export const Captions: React.FC<{
 								display: 'inline-block',
 								transform: `scale(${active ? pop : 1})`,
 								fontWeight: active || isEmphasized ? 700 : 500,
-								color: active || isEmphasized ? accentColor : 'white',
+								color: active ? chipInk : isEmphasized ? accentColor : 'white',
+								background: active
+									? `linear-gradient(135deg, ${accentColor}, ${adjustLightness(accentColor, 0.14)})`
+									: 'transparent',
+								borderRadius: 8,
+								padding: '2px 9px',
+								margin: '0 -9px',
+								boxShadow: active ? `0 6px 16px ${withAlpha(accentColor, 0.5)}` : 'none',
+								textShadow: active ? 'none' : '0 2px 10px rgba(0,0,0,0.55)',
 								opacity: spoken && !isEmphasized ? 0.55 : 1,
 							}}
 						>

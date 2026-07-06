@@ -2,11 +2,14 @@ import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {Scene} from '../storyboard';
 import {HEADLINE_FONT_FAMILY, KICKER_FONT_FAMILY} from '../fonts';
+import {glassPanelStyle} from '../glass';
+import {adjustLightness, withAlpha} from '../color-utils';
 
 // Big animated number/stat callout, e.g. for "87% faster" beats. Layers on
-// top of whatever overlay the scene's `kind` already renders. The serif
-// display face on the number matches TitleCard's cinematic treatment so a
-// stat beat reads as the same editorial template.
+// top of whatever overlay the scene's `kind` already renders. Sits inside a
+// glass card with a soft accent-colored glow behind the numeral, and the
+// serif display face matches TitleCard's cinematic treatment so a stat beat
+// reads as the same editorial template rather than a bare floating number.
 export const StatCallout: React.FC<{
 	scene: Scene;
 	brandColor: string;
@@ -39,67 +42,108 @@ export const StatCallout: React.FC<{
 		extrapolateRight: 'clamp',
 	});
 
+	const numberGradient = `linear-gradient(180deg, ${adjustLightness(accentColor, 0.16)}, ${accentColor})`;
+
 	return (
 		<AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', padding: '10%', opacity: exitOpacity}}>
-			<div style={{transform: `scale(${scale})`, opacity, display: 'flex', alignItems: 'baseline'}}>
-				{prefix ? (
-					<span
-						style={{
-							fontFamily: `"${HEADLINE_FONT_FAMILY}", Georgia, serif`,
-							fontSize: 64,
-							fontWeight: 600,
-							color: brandColor,
-							marginRight: 4,
-						}}
-					>
-						{prefix}
-					</span>
-				) : null}
-				<span
-					style={{
-						fontFamily: `"${HEADLINE_FONT_FAMILY}", Georgia, serif`,
-						fontWeight: 600,
-						fontSize: 168,
-						lineHeight: 1,
-						color: accentColor,
-						textShadow: '0 8px 32px rgba(0,0,0,0.45)',
-					}}
-				>
-					{value}
-				</span>
-				{suffix ? (
-					<span
-						style={{
-							fontFamily: `"${HEADLINE_FONT_FAMILY}", Georgia, serif`,
-							fontSize: 64,
-							fontWeight: 600,
-							color: brandColor,
-							marginLeft: 4,
-						}}
-					>
-						{suffix}
-					</span>
-				) : null}
-			</div>
-			{label ? (
+			<div
+				style={{
+					position: 'relative',
+					transform: `scale(${scale})`,
+					opacity,
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					...glassPanelStyle(accentColor, {radius: 28, padding: '36px 56px'}),
+				}}
+			>
+				{/* Soft glow seated behind the numeral, inside the card, for depth. */}
 				<div
 					style={{
-						transform: `translateY(${labelY}px)`,
-						opacity: labelOpacity,
-						marginTop: 16,
-						fontFamily: `"${KICKER_FONT_FAMILY}", sans-serif`,
-						fontWeight: 500,
-						textTransform: 'uppercase',
-						letterSpacing: '0.06em',
-						fontSize: 26,
-						color: brandColor,
-						textAlign: 'center',
-						maxWidth: '70%',
+						position: 'absolute',
+						width: '70%',
+						height: '60%',
+						top: '18%',
+						borderRadius: '50%',
+						background: `radial-gradient(closest-side, ${withAlpha(accentColor, 0.45)}, transparent 72%)`,
+						filter: 'blur(6px)',
 					}}
-				>
-					{label}
+				/>
+				<div style={{position: 'relative', display: 'flex', alignItems: 'baseline'}}>
+					{prefix ? (
+						<span
+							style={{
+								fontFamily: `"${HEADLINE_FONT_FAMILY}", Georgia, serif`,
+								fontSize: 64,
+								fontWeight: 600,
+								color: brandColor,
+								marginRight: 4,
+							}}
+						>
+							{prefix}
+						</span>
+					) : null}
+					<span
+						style={{
+							fontFamily: `"${HEADLINE_FONT_FAMILY}", Georgia, serif`,
+							fontWeight: 600,
+							fontSize: 168,
+							lineHeight: 1,
+							backgroundImage: numberGradient,
+							backgroundClip: 'text',
+							WebkitBackgroundClip: 'text',
+							color: 'transparent',
+							WebkitTextFillColor: 'transparent',
+							filter: `drop-shadow(0 8px 22px ${withAlpha(accentColor, 0.55)})`,
+						}}
+					>
+						{value}
+					</span>
+					{suffix ? (
+						<span
+							style={{
+								fontFamily: `"${HEADLINE_FONT_FAMILY}", Georgia, serif`,
+								fontSize: 64,
+								fontWeight: 600,
+								color: brandColor,
+								marginLeft: 4,
+							}}
+						>
+							{suffix}
+						</span>
+					) : null}
 				</div>
-			) : null}
+				{label ? (
+					<div
+						style={{
+							position: 'relative',
+							display: 'flex',
+							alignItems: 'center',
+							gap: 10,
+							marginTop: 18,
+							transform: `translateY(${labelY}px)`,
+							opacity: labelOpacity,
+						}}
+					>
+						<div style={{width: 20, height: 2, background: accentColor, borderRadius: 1}} />
+						<div
+							style={{
+								fontFamily: `"${KICKER_FONT_FAMILY}", sans-serif`,
+								fontWeight: 500,
+								textTransform: 'uppercase',
+								letterSpacing: '0.06em',
+								fontSize: 24,
+								color: brandColor,
+								textAlign: 'center',
+								maxWidth: '70%',
+							}}
+						>
+							{label}
+						</div>
+						<div style={{width: 20, height: 2, background: accentColor, borderRadius: 1}} />
+					</div>
+				) : null}
+			</div>
 		</AbsoluteFill>
 	);
 };

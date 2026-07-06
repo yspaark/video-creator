@@ -4,7 +4,7 @@
 
 const clamp01 = (v: number): number => Math.min(1, Math.max(0, v));
 
-const hexToRgb = (hex: string): {r: number; g: number; b: number} => {
+export const hexToRgb = (hex: string): {r: number; g: number; b: number} => {
 	const clean = hex.replace('#', '');
 	const expanded = clean.length === 3 ? clean.split('').map((c) => c + c).join('') : clean;
 	const value = parseInt(expanded, 16);
@@ -87,4 +87,27 @@ export const deriveScenePalette = (baseHex: string) => {
 	const glowWarm = hslToHex(h + 28, clamp01(s + 0.2), clamp01(l + 0.28));
 	const glowCool = hslToHex(h - 150, clamp01(s + 0.1), clamp01(l + 0.16));
 	return {sky, horizon, glowWarm, glowCool};
+};
+
+// hex -> "rgba(r, g, b, a)", for glass panels and glow shadows that need a
+// translucent version of an arbitrary brand/accent color.
+export const withAlpha = (hex: string, alpha: number): string => {
+	const {r, g, b} = hexToRgb(hex);
+	return `rgba(${r}, ${g}, ${b}, ${clamp01(alpha)})`;
+};
+
+// Nudges a hex color's lightness up or down — used to build a two-stop
+// gradient (e.g. accent -> a lifted highlight) from one authored color.
+export const adjustLightness = (hex: string, deltaL: number): string => {
+	const {h, s, l} = hexToHsl(hex);
+	return hslToHex(h, s, clamp01(l + deltaL));
+};
+
+// Picks readable ink (near-black or near-white) against a solid fill of the
+// given hex, via perceived luminance — so a colored highlight chip stays
+// legible no matter which brand accent a producer picks.
+export const readableInkColor = (hex: string): string => {
+	const {r, g, b} = hexToRgb(hex);
+	const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+	return luminance > 0.6 ? '#0B0B12' : '#FFFFFF';
 };

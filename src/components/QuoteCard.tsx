@@ -2,11 +2,13 @@ import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {Scene} from '../storyboard';
 import {HEADLINE_FONT_FAMILY, KICKER_FONT_FAMILY} from '../fonts';
+import {glassPanelStyle} from '../glass';
+import {adjustLightness} from '../color-utils';
 
 // Styled block quote with attribution, used when scene.kind is 'quote'.
 // Replaces TitleCard for this scene kind — the italic serif display face
-// mirrors TitleCard's "cinematic" (hook/cta) treatment so a quote beat
-// reads as the same editorial template, not a different visual language.
+// mirrors TitleCard's "cinematic" (hook/cta) treatment, and the glass card
+// gives the quote a physical frame instead of floating text.
 export const QuoteCard: React.FC<{
 	scene: Scene;
 	brandColor: string;
@@ -33,16 +35,29 @@ export const QuoteCard: React.FC<{
 		extrapolateRight: 'clamp',
 	});
 
+	const markGradient = `linear-gradient(160deg, ${adjustLightness(accentColor, 0.2)}, ${accentColor})`;
+
 	return (
-		<AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', padding: '0 12%', opacity: exitOpacity}}>
-			<div style={{opacity, transform: `translateY(${translateY}px)`, textAlign: 'center'}}>
+		<AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', padding: '0 10%', opacity: exitOpacity}}>
+			<div
+				style={{
+					opacity,
+					transform: `translateY(${translateY}px)`,
+					textAlign: 'center',
+					...glassPanelStyle(accentColor, {radius: 26, padding: '48px 56px 40px'}),
+				}}
+			>
 				<div
 					style={{
 						fontFamily: `"${HEADLINE_FONT_FAMILY}", Georgia, serif`,
 						fontSize: 120,
-						lineHeight: 0.6,
-						color: accentColor,
-						marginBottom: 12,
+						lineHeight: 0.5,
+						backgroundImage: markGradient,
+						backgroundClip: 'text',
+						WebkitBackgroundClip: 'text',
+						color: 'transparent',
+						WebkitTextFillColor: 'transparent',
+						marginBottom: 16,
 					}}
 				>
 					&ldquo;
@@ -63,16 +78,26 @@ export const QuoteCard: React.FC<{
 				{attribution ? (
 					<div
 						style={{
-							marginTop: 24,
-							fontFamily: `"${KICKER_FONT_FAMILY}", sans-serif`,
-							fontWeight: 500,
-							textTransform: 'uppercase',
-							letterSpacing: '0.09em',
-							fontSize: 22,
-							color: brandColor,
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							gap: 10,
+							marginTop: 26,
 						}}
 					>
-						— {attribution}
+						<div style={{width: 5, height: 5, borderRadius: '50%', backgroundColor: accentColor}} />
+						<div
+							style={{
+								fontFamily: `"${KICKER_FONT_FAMILY}", sans-serif`,
+								fontWeight: 500,
+								textTransform: 'uppercase',
+								letterSpacing: '0.09em',
+								fontSize: 22,
+								color: brandColor,
+							}}
+						>
+							{attribution}
+						</div>
 					</div>
 				) : null}
 			</div>
