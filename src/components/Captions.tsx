@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {Scene} from '../storyboard';
+import {BODY_FONT_FAMILY} from '../fonts';
 
 const FADE_FRAMES = 8;
 const POP_FRAMES = 4;
@@ -41,11 +42,13 @@ const buildWordSpans = (
 	});
 };
 
-export const Captions: React.FC<{scene: Scene; brandColor: string; accentColor: string}> = ({
-	scene,
-	brandColor,
-	accentColor,
-}) => {
+export const Captions: React.FC<{
+	scene: Scene;
+	brandColor: string;
+	accentColor: string;
+	transitionFrames?: number;
+	isFirstScene?: boolean;
+}> = ({scene, brandColor, accentColor, transitionFrames = 0, isFirstScene = true}) => {
 	const frame = useCurrentFrame();
 	const {durationInFrames, fps} = useVideoConfig();
 
@@ -53,9 +56,15 @@ export const Captions: React.FC<{scene: Scene; brandColor: string; accentColor: 
 		return null;
 	}
 
+	// Clear fully before the next scene's crossfade starts, and hold off
+	// appearing until this scene has finished dissolving in — otherwise the
+	// outgoing and incoming scenes' captions overlap into an illegible
+	// double-exposure during the transition (visible in early review stills).
+	const entranceDelay = isFirstScene ? 0 : transitionFrames;
+	const exitStart = Math.max(durationInFrames - transitionFrames, 0);
 	const containerOpacity = interpolate(
 		frame,
-		[0, FADE_FRAMES, durationInFrames - FADE_FRAMES, durationInFrames],
+		[entranceDelay, entranceDelay + 8, exitStart, durationInFrames],
 		[0, 1, 1, 0],
 		{extrapolateLeft: 'clamp', extrapolateRight: 'clamp'},
 	);
@@ -73,9 +82,9 @@ export const Captions: React.FC<{scene: Scene; brandColor: string; accentColor: 
 			style={{
 				justifyContent: 'flex-end',
 				alignItems: 'center',
-				paddingBottom: '10%',
-				paddingLeft: '8%',
-				paddingRight: '8%',
+				paddingBottom: '9%',
+				paddingLeft: '10%',
+				paddingRight: '10%',
 			}}
 		>
 			<div
@@ -86,11 +95,17 @@ export const Captions: React.FC<{scene: Scene; brandColor: string; accentColor: 
 					justifyContent: 'center',
 					columnGap: '0.4em',
 					rowGap: '0.15em',
-					fontFamily: 'Inter, sans-serif',
-					fontWeight: 700,
-					fontSize: 48,
+					fontFamily: `"${BODY_FONT_FAMILY}", sans-serif`,
+					fontWeight: 500,
+					fontSize: 40,
 					lineHeight: 1.35,
 					textAlign: 'center',
+					color: 'white',
+					textShadow: '0 2px 14px rgba(0,0,0,0.7), 0 0 2px rgba(0,0,0,0.8)',
+					background: 'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0.15))',
+					borderRadius: 10,
+					padding: '8px 20px',
+					borderLeft: `2px solid ${brandColor}66`,
 				}}
 			>
 				{spans.map((span, i) => {
@@ -111,10 +126,9 @@ export const Captions: React.FC<{scene: Scene; brandColor: string; accentColor: 
 							style={{
 								display: 'inline-block',
 								transform: `scale(${active ? pop : 1})`,
+								fontWeight: active || isEmphasized ? 700 : 500,
 								color: active || isEmphasized ? accentColor : 'white',
 								opacity: spoken && !isEmphasized ? 0.55 : 1,
-								textShadow: '0 2px 12px rgba(0,0,0,0.65)',
-								WebkitTextStroke: active || isEmphasized ? 'none' : `1px ${brandColor}`,
 							}}
 						>
 							{span.word}

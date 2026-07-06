@@ -63,6 +63,21 @@ export const quoteSchema = z.object({
 	attribution: z.string().optional(),
 });
 
+// A small, generic per-topic iconography vocabulary — covers common
+// travel/explainer beats (a bus for a transit scene, a fork for a meal, a
+// landmark glyph for a monument, ...) without being tied to any one video's
+// subject matter. Optional: not every scene (e.g. a multi-topic overview)
+// needs one. See SceneMotif.tsx for how this renders.
+export const sceneMotifSchema = z.enum([
+	'transit',
+	'food',
+	'landmark',
+	'money',
+	'lodging',
+	'nature',
+	'reflection',
+]);
+
 export const sceneSchema = z.object({
 	id: z.string(),
 	kind: z.enum(['hook', 'point', 'list', 'quote', 'cta', 'custom']).default('point'),
@@ -83,6 +98,8 @@ export const sceneSchema = z.object({
 	listItems: z.array(z.string()).min(1).optional(),
 	// Styled block quote with attribution — used when kind is 'quote'.
 	quote: quoteSchema.optional(),
+	// Optional per-scene visual motif (see sceneMotifSchema above).
+	motif: sceneMotifSchema.optional(),
 });
 
 export const storyboardSchema = z.object({

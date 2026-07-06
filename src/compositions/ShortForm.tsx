@@ -36,7 +36,12 @@ export const ShortForm: React.FC<ShortFormProps> = ({storyboard, timings}) => {
 							/>
 						) : null}
 						<TransitionSeries.Sequence durationInFrames={timings[i].durationInFrames}>
-							<SceneRenderer scene={scene} brand={storyboard.meta.brand} />
+							<SceneRenderer
+								scene={scene}
+								brand={storyboard.meta.brand}
+								transitionFrames={TRANSITION_FRAMES}
+								isFirstScene={i === 0}
+							/>
 						</TransitionSeries.Sequence>
 					</React.Fragment>
 				))}

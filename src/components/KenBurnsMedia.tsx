@@ -1,6 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Img, OffthreadVideo, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {Background} from '../storyboard';
+import {AtmosphereBackground} from './AtmosphereBackground';
 
 const KEN_BURNS_SCALE = 1.12;
 
@@ -13,7 +14,11 @@ export const KenBurnsMedia: React.FC<{background: Background}> = ({background}) 
 	});
 
 	if (background.type === 'color') {
-		return <AbsoluteFill style={{backgroundColor: background.value}} />;
+		// A flat or gradient-filled rectangle behind text is a slide
+		// background no matter how it's animated — see AtmosphereBackground
+		// for the layered depth/parallax treatment placeholder scenes get
+		// instead, derived procedurally from the one authored color.
+		return <AtmosphereBackground baseHex={background.value} />;
 	}
 
 	if (background.type === 'video') {
