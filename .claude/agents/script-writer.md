@@ -58,6 +58,29 @@ before anything lands in the repo.
   travel-vlog voice. Apply whatever this project's actual `brief.md` says
   (e.g. calm/competent/warm-banter, sparse functional captions, no
   hardship-vlog theatrics), not a generic default.
+- **For this channel specifically, write banter as an actual exchange,
+  not a single reporting voice.** See
+  `serbia-sample-episode/brief.md`'s "Competitor voice/narration
+  breakdown" — every competitor either turns the couple's personal life
+  into the content (유랑쓰), runs a comic double-act (용숙부부), or holds
+  a single-voice monologue too long (캡틴따거). Our gap is two people
+  thinking out loud *together*. Concretely:
+  - A line like `숙소에서 공항버스 정류장까지 도보 10분.` (report) reads
+    as narration-over-footage. `— 여기서 정류장 몇 분이야? — 지도 보니까
+    10분.` (exchange) reads as two people who planned it. Prefer the
+    second shape wherever the scene's information naturally splits into
+    a question/confirmation or observation/reply, without forcing it
+    where one clean factual line is genuinely enough.
+  - A historical/informational aside stays one sentence's worth of
+    substance even when written as an exchange — don't let splitting it
+    into dialogue become an excuse to pad it longer.
+  - A mishap is stated once, flatly, by either voice, and the scene
+    moves on — not milked for comedy and not played as hardship.
+  - Note: the current storyboard schema (`voiceover.text`) is a single
+    text block per scene, not per-speaker turns — write the exchange
+    inline (e.g. with an em dash per line, as above) rather than waiting
+    on a schema change; it renders as one voiceover track either way
+    until TTS/multi-voice support exists.
 
 ## Output format
 
