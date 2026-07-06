@@ -1,0 +1,34 @@
+{
+	"meta": {
+		"title": "Serbia, Self-Planned — Novi Sad",
+		"slug": "novi-sad-episode",
+		"platform": "longform",
+		"fps": 30,
+		"width": 1920,
+		"height": 1080,
+		"brand": {
+			"primaryColor": "#111827",
+			"secondaryColor": "#F9FAFB",
+			"accentColor": "#6366F1",
+			"fontFamily": "Inter"
+		}
+	},
+	"scenes": [
+		{
+			"id": "scene-1-hook",
+			"kind": "hook",
+			"voiceover": {
+				"text": "REPLACE ME: the opening line that hooks the viewer."
+			},
+			"background": {
+				"type": "color",
+				"value": "#111827"
+			},
+			"textOverlay": {
+				"heading": "REPLACE ME",
+				"position": "center"
+			},
+			"captions": "subtitle"
+		}
+	]
+}
