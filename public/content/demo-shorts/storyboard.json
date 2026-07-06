@@ -28,26 +28,60 @@
 				"heading": "You're doing it wrong",
 				"position": "center"
 			},
+			"emphasize": ["wrong"],
 			"captions": "subtitle"
 		},
 		{
-			"id": "scene-2-point",
+			"id": "scene-2-stat",
 			"kind": "point",
 			"voiceover": {
-				"text": "Here is the one change that actually makes a difference."
+				"text": "This one change makes your videos eighty seven percent more engaging."
 			},
 			"background": {
 				"type": "color",
 				"value": "#1F2937"
 			},
-			"textOverlay": {
-				"heading": "The one change",
-				"position": "top"
+			"stat": {
+				"value": "87",
+				"suffix": "%",
+				"label": "more engaging"
 			},
 			"captions": "subtitle"
 		},
 		{
-			"id": "scene-3-cta",
+			"id": "scene-3-list",
+			"kind": "list",
+			"voiceover": {
+				"text": "Three things to fix today: your hook, your pacing, and your captions."
+			},
+			"background": {
+				"type": "color",
+				"value": "#111827"
+			},
+			"textOverlay": {
+				"heading": "Fix these 3 things"
+			},
+			"listItems": ["Your hook", "Your pacing", "Your captions"],
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-4-quote",
+			"kind": "quote",
+			"voiceover": {
+				"text": "Attention is the new currency."
+			},
+			"background": {
+				"type": "color",
+				"value": "#312E81"
+			},
+			"quote": {
+				"text": "Attention is the new currency.",
+				"attribution": "Every creator, ever"
+			},
+			"captions": "subtitle"
+		},
+		{
+			"id": "scene-5-cta",
 			"kind": "cta",
 			"voiceover": {
 				"text": "Try it today and let me know how it goes."

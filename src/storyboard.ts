@@ -25,12 +25,22 @@ export const backgroundSchema = z.discriminatedUnion('type', [
 	}),
 ]);
 
+export const wordTimestampSchema = z.object({
+	word: z.string(),
+	startSeconds: z.number(),
+	endSeconds: z.number(),
+});
+
 export const voiceoverSchema = z.object({
 	text: z.string(),
 	// Path relative to public/, e.g. content/my-video/assets/voiceover/scene-1.mp3
 	// Omit until TTS audio has been generated — duration then falls back to
 	// a words-per-minute estimate from `text`.
 	src: z.string().optional(),
+	// Per-word timing from a forced-alignment step (e.g. Whisper). Omit until
+	// that's wired up — Captions then falls back to a character-length-
+	// weighted estimate across the scene's duration.
+	wordTimestamps: z.array(wordTimestampSchema).optional(),
 });
 
 export const textOverlaySchema = z.object({
@@ -39,6 +49,18 @@ export const textOverlaySchema = z.object({
 	position: z
 		.enum(['top', 'center', 'bottom'])
 		.default('bottom'),
+});
+
+export const statSchema = z.object({
+	value: z.string(), // e.g. "87"
+	prefix: z.string().optional(), // e.g. "$"
+	suffix: z.string().optional(), // e.g. "%", "+"
+	label: z.string().optional(), // e.g. "faster render time"
+});
+
+export const quoteSchema = z.object({
+	text: z.string(),
+	attribution: z.string().optional(),
 });
 
 export const sceneSchema = z.object({
@@ -52,6 +74,15 @@ export const sceneSchema = z.object({
 	// Lower-third label (speaker name, chapter title) — long-form only.
 	label: z.string().optional(),
 	captions: z.enum(['subtitle', 'none']).default('subtitle'),
+	// Words to always render emphasized in captions, regardless of timing.
+	emphasize: z.array(z.string()).optional(),
+	// Big animated number/stat, e.g. for "87% faster" beats. Can accompany
+	// any scene kind — it layers on top of the kind's own overlay.
+	stat: statSchema.optional(),
+	// Staggered checklist/bullet reveal — used when kind is 'list'.
+	listItems: z.array(z.string()).min(1).optional(),
+	// Styled block quote with attribution — used when kind is 'quote'.
+	quote: quoteSchema.optional(),
 });
 
 export const storyboardSchema = z.object({
