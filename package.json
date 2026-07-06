@@ -7,6 +7,7 @@
   "scripts": {
     "studio": "remotion studio",
     "new-video": "node scripts/new-video.mjs",
+    "new-trip": "node scripts/new-trip.mjs",
     "render:shorts": "remotion render ShortForm out/shorts.mp4",
     "render:longform": "remotion render LongForm out/longform.mp4",
     "typecheck": "tsc --noEmit"
