@@ -53,10 +53,14 @@ useful if you or the producer come back to iterate later.
 
 ## 3. Write the script
 
-In `script.md`, draft the narration scene-by-scene, matching the reference's
-structure/pacing/tone (or sensible platform defaults if there was no
-reference). For shorts: a strong hook in the first 1-2 seconds, fast pacing,
-one idea per scene. For long-form: a clear intro, sectioned body, a close.
+Delegate to the `script-writer` agent with the producer's baseline story and
+key points, the slug/platform, and whatever the reference-analyst returned
+(or a note that there was no reference). It writes `script.md` — narration
+scene-by-scene matching the reference's or channel's established
+structure/pacing/tone, plus per-scene `kind`/`label`/`motif` suggestions to
+make the next step close to mechanical. It fact-checks concrete real-world
+details rather than inventing them and flags anything it couldn't
+determine — resolve those with the producer before moving on.
 
 ## 4. Encode the storyboard
 
