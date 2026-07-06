@@ -55,12 +55,12 @@ useful if you or the producer come back to iterate later.
 
 Delegate to the `script-writer` agent with the producer's baseline story and
 key points, the slug/platform, and whatever the reference-analyst returned
-(or a note that there was no reference). It writes `script.md` — narration
+(or a note that there was no reference). It returns a draft — narration
 scene-by-scene matching the reference's or channel's established
 structure/pacing/tone, plus per-scene `kind`/`label`/`motif` suggestions to
-make the next step close to mechanical. It fact-checks concrete real-world
-details rather than inventing them and flags anything it couldn't
-determine — resolve those with the producer before moving on.
+make the next step close to mechanical — but does not write any file
+itself. Show the draft to the producer and resolve any flagged open
+questions/`[VERIFY]` items before saving it to `script.md` and moving on.
 
 ## 4. Encode the storyboard
 
