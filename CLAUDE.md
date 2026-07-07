@@ -11,6 +11,13 @@ follow `.claude/skills/make-video/SKILL.md`. It is the authoritative
 end-to-end workflow (clarify → analyze reference → script → assets → render →
 iterate → deliver). This file only covers the architecture the skill relies on.
 
+If the request is about an entire **trip** instead — planning content for a
+trip before it happens, logging it while it happens, or turning a trip's
+footage/notes into a video series afterward — read
+`.claude/skills/trip-content/SKILL.md` instead. It owns the pre-trip/
+during-trip/post-trip/publishing lifecycle across a trip's videos and calls
+into `make-video` once per individual video.
+
 ## Architecture
 
 - **Rendering engine: Remotion** (`src/`) — video is written in React/TypeScript
@@ -42,6 +49,15 @@ iterate → deliver). This file only covers the architecture the skill relies on
   must live under this directory to be renderable.
 - **`scripts/new-video.mjs`** — scaffolds a new `public/content/<slug>/` with
   template files. Run via `npm run new-video -- <slug> <shorts|longform> "Title"`.
+- **`public/trips/<trip-slug>/`** — one directory per *trip*, which may span
+  several videos: `trip-brief.md` (destinations, dates, key decisions + why),
+  `research-log.md` (pre-trip research captured as it happens),
+  `content-calendar.md` (which part of the trip maps to which video(s), plus
+  series-continuity notes), `daily-logs/day-NN.md` (during-trip voice
+  memo/text logs), `footage-log.md` (footage naming convention + shot log),
+  `assets/{footage,voice-memos}/` (raw capture staging). Scaffolded with
+  `npm run new-trip -- <slug> "Trip Title"`. See
+  `.claude/skills/trip-content/SKILL.md`.
 
 ## Commands
 
@@ -86,6 +102,11 @@ placeholder path working either way.
 
 - Everything about *one specific video* (script, storyboard, assets) lives
   under `public/content/<slug>/` — never invent a second place to put it.
+- Everything about *one specific trip* that may span multiple videos (trip
+  brief, research log, content calendar, daily logs, footage log) lives
+  under `public/trips/<trip-slug>/`. It cross-references `public/content/`
+  video projects by slug via `content-calendar.md` — it never duplicates a
+  video's own script/storyboard/assets.
 - Everything about *how videos are made in general* (components,
   compositions, schema, skill workflow) lives under `src/` and
   `.claude/` — it should never reference a specific slug or project.

@@ -17,6 +17,20 @@ before anything lands in the repo.
 
 - **Baseline story**: what this video is about / what happened.
 - **Key points**: specific beats, facts, or moments that must appear.
+- **Transcripts**, if this is a post-trip edit: raw voice-memo/daily-log
+  transcripts and/or footage-log entries from `public/trips/<trip-slug>/`
+  (`daily-logs/*.md`, `footage-log.md`). Treat these the same way as
+  producer-supplied key points — they're the raw material, not yet
+  structured narration. Use `footage-log.md`'s "highlight?" column to weigh
+  which moments earn screen time; don't just narrate the logs in
+  chronological order if a moment buried on day 4 is the actual hook.
+- **Trip brief**, if this video is part of a trip: that trip's
+  `public/trips/<trip-slug>/trip-brief.md` (destinations, dates, key
+  decisions and *why*) and `content-calendar.md` (what this specific video
+  is supposed to cover vs its sibling videos, so you don't duplicate a beat
+  another video in the series already owns). The trip brief's "why" behind
+  a decision is usually the actual narration material — the decision itself
+  is often too dry on its own.
 - **Platform**: shorts or longform (changes structure/pacing — see below).
   If not stated, check `public/content/<slug>/storyboard.json`'s
   `meta.platform` when a slug exists, or ask the calling session.
